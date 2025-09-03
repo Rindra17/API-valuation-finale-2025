@@ -8,6 +8,8 @@ servers:
 paths:
   /ping:
     get:
+      tags:
+        - ping
       summary: This is a simple get/ ping
       responses:
         200:
@@ -16,8 +18,36 @@ paths:
             text/plain:
               example: pong
 
+  /cars:
+    get:
+      tags:
+        - cars
+      summary: Return a list of all cars
+      responses:
+        200:
+          description: return all cars on memory
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: "#/components/schemas/cars"
+
 components:
   schemas:
     cars:
-      
-  
+      type: object
+      properties:
+        identifier:
+          type: string
+        brand:
+          type: string
+        model:
+          type: string
+        characteristics:
+          type: object
+          properties:
+            max_speed:
+              type: number
+            max_fuel_capacity:
+              type: number
