@@ -2,6 +2,7 @@ from typing import List
 
 from fastapi import FastAPI
 from pydantic import BaseModel
+from starlette.requests import Request
 from starlette.responses import Response, JSONResponse
 
 app = FastAPI()
@@ -36,3 +37,10 @@ def create_cars(cars: Car):
 @app.get("/cars")
 def get_cars():
     return JSONResponse(content=serialize_cars(), status_code=200, media_type="application/json")
+
+@app.get("/cars/{id}")
+def get_car(id: str):
+    for car in cars_list:
+        if car.identifier == id:
+            return JSONResponse(content=car.model_dump(), status_code=200, media_type="application/json")
+    return JSONResponse(content="Car not found", status_code=404, media_type="application/json")
