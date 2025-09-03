@@ -1,0 +1,23 @@
+openapi: 3.0.3
+info:
+  title: STD24069
+  description: This is a specification of STD24069
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:8000'
+paths:
+  /ping:
+    get:
+      summary: This is a simple get/ ping
+      responses:
+        200:
+          description: This return a pong as text plain
+          content:
+            text/plain:
+              example: pong
+
+components:
+  schemas:
+    cars:
+      
+  
