@@ -32,3 +32,7 @@ def create_cars(cars: Car):
     cars_list.append(cars)
     serialized_car = serialize_cars()
     return JSONResponse(content=serialized_car, status_code=201, media_type="application/json")
+
+@app.get("/cars")
+def get_cars():
+    return JSONResponse(content=serialize_cars(), status_code=200, media_type="application/json")
